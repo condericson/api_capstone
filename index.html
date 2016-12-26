@@ -2,37 +2,44 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<link rel="stylesheet" type="text/css" href="workdistance.css">
-	<title>Distance to work app</title>
+	<link rel="stylesheet" type="text/css" href="concertfinder.css">
+	<title>Concert Finder</title>
 </head>
 <body>
 
-	<form action="#" class="js-search-form">
-    	<label for="js-address">Address</label>
-    	<input type="text" name="js-address" id="js-address">
-    	<label for="js-zip">City and State or Zip</label>
-    	<input type="text" name="js-zip" id="js-zip">
+	<form action="#" class="js-artist-search-form">
+    	<label for="js-artist">Artist</label>
+    	<input type="text" name="js-artist" id="js-artist">
     	<button type="submit">Search</button>
 	</form>
 
+  <div class="eventlist"></div>
+
+  <div class="eventlisttest">
+    <ul>
+      <li class="date">Date here</li>
+      <li class="nameofvenue">Philips Arena</li>
+      <li class="address">1 Philips Dr, Atlanta, GA 30303</li>
+      <li class="city">Atlanta</li>
+      <li class="state">GA</li>
+      <li class="zip">30303</li>
+    </ul>
+    <button class="mapbutton">Map it!</button>
+  </div>
 
 
 
 
 
 
-
-
-
-
-
-
+  <div id="map"></div>
 
 
 
 
 
 <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
-<script type="text/javascript" src="workdistance.js"></script>	
+<script type="text/javascript" src="concertfinder.js"></script>	
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEE1vUc_I0eZhU1ScrZSS4kukTmZM0Ndo&callback="></script>
 </body>
 </html>
