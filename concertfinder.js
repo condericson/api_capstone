@@ -1,10 +1,29 @@
 $(document).ready(function() {
 
+/*//Date Formatting function
+Date.prototype.getFromFormat = function(format) {
+  var yyyy = this.getFullYear().toString();
+  format = format.replace(/yyyy/g, yyyy)
+  var mm = (this.getMonth()+1).toString();
+  format = format.replace(/mm/g, (mm[1]?mm:"0"+mm[0]));
+  var dd  = this.getDate().toString();
+  format = format.replace(/dd/g, (dd[1]?dd:"0"+dd[0]));
+  var hh = this.getHours().toString();
+  format = format.replace(/hh/g, (hh[1]?hh:"0"+hh[0]));
+  var ii = this.getMinutes().toString();
+  format = format.replace(/ii/g, (ii[1]?ii:"0"+ii[0]));
+  var ss  = this.getSeconds().toString();
+  format = format.replace(/ss/g, (ss[1]?ss:"0"+ss[0]));
+  return format;
+};*/
 
-//JAMBASE SEARCH AND API FUNCTIONS
+
+
+
+/*//JAMBASE SEARCH AND API FUNCTIONS
 
 //Jambase Api url and key
-/*var jambaseApp = {
+var jambaseApp = {
 	jambaseApi: 'http://api.jambase.com',
 	jambaseApiKey: 'dmuv2jdmqbcad4yhdwshehf5'
 };
@@ -49,18 +68,25 @@ function getJambaseEvents(jambaseApp, artistId) {
 	})
 }
 
+//function for displaying Events
 function displayEvents(data) {
+	//clear out event list
+	$('.eventlist').html("");
 	var eventDetails = data.Events;
-	$(eventDetails).forEach(function(object) {
-		$('.eventlist').html(
+	eventDetails.forEach(function(object) {
+		//var dateStamp = new Date(object.Date);
+		$('.eventlist').append(
 			'<ul>' + 
-			'<li>' + eventDetails[object].Date + '</li>' + 
-			'<li>' + eventDetails[object].Venue.Name + '</li>' + 
-			'<li>' + eventDetails[object].Venue.Address + '</li>' + 
-			'<li>' + eventDetails[object].Venue.City + '</li>' + 
-			'<li>' + eventDetails[object].Venue.State + '</li>' + 
-			'<li>' + eventDetails[object].Venue.ZipCode + '</li>' +
-			'</ul>'
+			'<li>' + moment(object.Date).format("MMMM Do YYYY") + '</li>' + 
+			'<li>' + object.Venue.Name + '</li>' + 
+			'<li>' + object.Venue.Address + '</li>' + 
+			'<li>' + object.Venue.City + '</li>' + 
+			'<li>' + object.Venue.State + '</li>' + 
+			'<li>' + object.Venue.ZipCode + '</li>' +
+			'<li class="lat">' + object.Venue.Latitude + '</li>' +
+			'<li class="lng">' + object.Venue.Longitude + '</li>' +
+			'</ul>' + 
+			'<button class="mapbutton" type="submit">Map it!</button>'
 			);
 	})
 		
@@ -75,26 +101,29 @@ function displayEvents(data) {
 
 
 
-
-
-
 //GOOGLE MAPPING API AND FUNCTIONS
 
 //event listener for maping venue location
-$('mapbutton').click(function(event) {
+$('.eventlist').on('click', '.eventitem .mapbutton', function(event) {
 	event.preventDefault();
-	initMap(this);
+	console.log($(this));
+	google.maps.event.trigger(map, 'resize');
+	initMap($(this));
 })
 
 function initMap(button) {
-	var info = button.parent().$('ul');
-	var uluru = {lat: -25.363, lng: 131.044};
+	var info = button.parent();
+	var latitude = info.find($('.lat')).html();
+	var longitude = info.find($('.lng')).html();
+	console.log(longitude);
+	console.log(Number(longitude));
+	var location = {lat: Number(latitude), lng: Number(longitude)};
 	var map = new google.maps.Map(document.getElementById('map'), {
-	  zoom: 4,
-	  center: uluru
+	  zoom: 16,
+	  center: location
 	});
 	var marker = new google.maps.Marker({
-	  position: uluru,
+	  position: location,
 	  map: map
 	});
 }
