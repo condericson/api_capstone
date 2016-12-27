@@ -20,7 +20,7 @@ Date.prototype.getFromFormat = function(format) {
 
 
 
-/*//JAMBASE SEARCH AND API FUNCTIONS
+//JAMBASE SEARCH AND API FUNCTIONS
 
 //Jambase Api url and key
 var jambaseApp = {
@@ -92,7 +92,7 @@ function displayEvents(data) {
 		
 
 
-}*/
+}
 
 
 
@@ -106,7 +106,6 @@ function displayEvents(data) {
 //event listener for maping venue location
 $('.eventlist').on('click', '.eventitem .mapbutton', function(event) {
 	event.preventDefault();
-	console.log($(this));
 	google.maps.event.trigger(map, 'resize');
 	initMap($(this));
 })
@@ -115,8 +114,6 @@ function initMap(button) {
 	var info = button.parent();
 	var latitude = info.find($('.lat')).html();
 	var longitude = info.find($('.lng')).html();
-	console.log(longitude);
-	console.log(Number(longitude));
 	var location = {lat: Number(latitude), lng: Number(longitude)};
 	var map = new google.maps.Map(document.getElementById('map'), {
 	  zoom: 16,
