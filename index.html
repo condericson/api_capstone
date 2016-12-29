@@ -3,47 +3,66 @@
 <head>
 	<meta charset="UTF-8">
 	<link rel="stylesheet" type="text/css" href="concertfinder.css">
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto">
 	<title>Concert Finder</title>
 </head>
+<div class="backgroundimg"></div>
 <body>
 
-	<form action="#" class="js-artist-search-form">
-    	<label for="js-artist">Artist</label>
-    	<input type="text" name="js-artist" id="js-artist">
-    	<button type="submit">Search</button>
-	</form>
+<header id="title">Concert Finder</header>
 
-  <div class="eventlist">
-    <ul class="eventitem"> 
-      <li class="lat">33.7573</li>
-      <li class="lng">-84.3963</li>
-      <button class="mapbutton" type="submit">Map it!</button>
-    </ul> 
+<div class="searchcontainer">
+  <form action="#" class="js-search-form">
+      <input type="text" name="js-artist" id="js-artist" placeholder="Know the artist's name?">
+      <button type="submit" class="searchbuttons"></button>  
+  </form>
+</div>
 
-    <ul class="eventitem"> 
-      <li class="lat">28.6139</li>
-      <li class="lng">77.2090</li>
-      <button class="mapbutton" type="submit">Map it!</button>
-    </ul> 
+
+<!--   <div class="searchcontainer">
+  <form action="#" class="js-search-form">
+    <div id="tracksearchcontainer">
+    	<input type="text" name="js-track" id="js-track" placeholder="Know the song name?"><br>
+    	<button type="submit" class="searchbuttons">Search</button>
+    </div>
+
+    <div id="artistsearchcontainer">
+      <input type="text" name="js-artist" id="js-artist" placeholder="Know the artist's name?"><br>
+      <button type="submit" class="searchbuttons">Search</button>  
+    </div>
+  </form>
+</div> -->
+
+  <div id="results">
+
+    <h1 class="upcoming">Upcoming events for <span class="artistname">Sia</span></h1>
+
+    <div class="eventlist"></div>
+
+    <div class="eventlisttest">
+      <p class="venue">Philip's Arena</p>
+      <p class="datep">Date: <span class="date">May 1st, 2017</span></p>
       
+      <p class="address">1 Philips Way Atlanta, GA 30000</p>
+      <button class="mapbutton">Map it!</button>
+    </div>
+
+    
+
+
+
+
+
+  <div id="mapcontainer">
+    <div id="map"></div>
   </div>
 
-  
 
+</div>
 
-
-
-
-
-  <div id="map"></div>
-
-
-
-
-
-<script src="https://code.jquery.com/jquery-3.1.0.js"></script>
-<script type="text/javascript" src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js'></script>
-<script type="text/javascript" src="concertfinder.js"></script>	
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEE1vUc_I0eZhU1ScrZSS4kukTmZM0Ndo&callback="></script>
+  <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+  <script type="text/javascript" src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js'></script>
+  <script type="text/javascript" src="concertfinder.js"></script>	
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEE1vUc_I0eZhU1ScrZSS4kukTmZM0Ndo&callback="></script>
 </body>
 </html>
