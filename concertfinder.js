@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-
+$('.loading, .pagecover').addClass('hidden');
 
 
 
@@ -56,6 +56,7 @@ var jambaseApp = {
 //Event listener for displaying events of searched artist
 $('.js-search-form').submit(function(event) {
 	event.preventDefault();
+	$('#eventlist').html("<h1 class='loading'>Loading...</h1>")
 	console.log($('#js-artist').val())
 	getJambaseArtistId(jambaseApp, $('#js-artist').val());	
 })
@@ -69,13 +70,19 @@ function getJambaseArtistId(jambaseApp, name) {
 		api_key: jambaseApp.jambaseApiKey
 	}
 	$.getJSON(url, params, function(data) {
-		if (data) {
+		console.log(data);
+		if (data.Artists.length == 0) {
+			console.log('No results found');
+			$('.js-search-form').append('<p class="spelling">No results found. Check the spelling?</p>')
+
+		}
+		else if (data) {
+			$('.artistname').append(data.Artists[0].Name);
 			getJambaseEvents(jambaseApp, data.Artists[0].Id);
 		}
 		else {
 			console.log('No results found');
 		}
-		console.log(data);
 	})
 }
 
@@ -90,11 +97,12 @@ function getJambaseEvents(jambaseApp, artistId) {
 	$.getJSON(url, params, function(data){
 		console.log(data);
 		if (data.Events.length == 0){
-			$('.eventlist').append(
+			$('#eventlist').html(
 			'<p id="noresults">No results found</p>'
 			);
 		}
 		else {
+			
 			displayEvents(data);	
 		}
 		
@@ -104,23 +112,46 @@ function getJambaseEvents(jambaseApp, artistId) {
 //function for displaying Events
 function displayEvents(data) {
 	//clear out event list
-	$('.eventlist').html("");
+	$('#eventlist').html("");
 	var eventDetails = data.Events;
 	eventDetails.forEach(function(object) {
-		//var dateStamp = new Date(object.Date);
-		$('.eventlist').append(
-			'<ul class="eventitem">' + 
-			'<li>' + moment(object.Date).format("MMMM Do YYYY") + '</li>' + 
-			'<li>' + object.Venue.Name + '</li>' + 
-			'<li>' + object.Venue.Address + '</li>' + 
-			'<li>' + object.Venue.City + '</li>' + 
-			'<li>' + object.Venue.State + '</li>' + 
-			'<li>' + object.Venue.ZipCode + '</li>' +
-			'<li class="lat">' + object.Venue.Latitude + '</li>' +
-			'<li class="lng">' + object.Venue.Longitude + '</li>' +
-			'<button class="mapbutton" type="submit">Map it!</button>' +
-			'</ul>'			
+		$('.titlepage').addClass('hidden');
+		$('#nav, #eventlist').removeClass('hidden');
+		$('#upcoming').removeClass('hidden');
+		$('#search').removeClass('searchcontainer');
+		$('#search').addClass('searchcontainernav');
+		if (object.TicketUrl == "") {
+			$('#eventlist').append(
+		      '<div class="eventitem">' +
+		      '<p class="venue">' + object.Venue.Name + '</p>' +
+		      '<p class="date">' + moment(object.Date).format("LLL") + '</p>' +
+		      '<p class="address">' + object.Venue.Address + ' ' + object.Venue.City + ', ' + object.Venue.State + ' ' + 
+		      object.Venue.ZipCode + '</p>' + 
+		      '<button class="mapbutton">Map it!</button>' + 
+		      '<p class="lat, hidden">' + object.Venue.Latitude + '</p>' +
+		      '<p class="lng, hidden">' + object.Venue.Longitude + '</p>' +
+		      '</div>'
+		      );
+	  		}
+	  	else {
+		  	$('#eventlist').append(
+		      '<div class="eventitem">' +
+		      '<p class="venue">' + object.Venue.Name + '</p>' +
+		      '<p class="date">' + moment(object.Date).format("LLL") + '</p>' +
+		      '<p class="address">' + object.Venue.Address + ' ' + object.Venue.City + ', ' + object.Venue.State + ' ' + 
+		      object.Venue.ZipCode + '</p>' + 
+		      '<button class="mapbutton">Map it!</button>' + '<a href="' + object.TicketUrl + '" target="_blank"><button class="tixbutton">Tickets!</button></a>' + 
+		      '<p class="lat, hidden">' + object.Venue.Latitude + '</p>' +
+		      '<p class="lng, hidden">' + object.Venue.Longitude + '</p>' +
+		      '</div>'
 			);
+	  	}
+
+
+
+
+
+		
 	})
 		
 
@@ -137,8 +168,12 @@ function displayEvents(data) {
 //GOOGLE MAPPING API AND FUNCTIONS
 
 //event listener for maping venue location
-$('.eventlist').on('click', '.eventitem .mapbutton', function(event) {
+$('#eventlist').on('click', '.mapbutton', function(event) {
 	event.preventDefault();
+	var container = $(this).parent();
+	var eventlistcontainer = $(this).parent().parent();
+	eventlistcontainer.find('#mapcontainer').remove();
+	container.append('<div id="mapcontainer"><div id="map"></div></div>');	  
 	google.maps.event.trigger(map, 'resize');
 	initMap($(this));
 })

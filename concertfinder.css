@@ -3,6 +3,23 @@
 	color: white;
 }
 
+.loading {
+	font-size: 70px;
+	top: 40%;
+	left: 40%;
+	text-align: center;
+	color: white;
+	position: fixed;
+	z-index: 101;
+}
+
+.pagecover {
+	width: 100%;
+	height: 100%;
+	background-color: purple;
+	z-index: 100;
+}
+
 html, body {
   margin: 0;
   width: 100%;
@@ -10,7 +27,7 @@ html, body {
 }
 
 body {
-	z-index: 99;
+	z-index: 98;
 }
 
 .backgroundimg {
@@ -22,91 +39,156 @@ body {
   z-index: -1;
   position: fixed;
   border: 0;
+  background-size: cover;
+}
+
+nav {
+	background-color: #5F1A7D;
+	width: 100%;
+	height: 10%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 99;
+}
+
+#navtitle {
+	display: inline-block;
+	position: fixed;
+	font-size: 40px;
+}
+
+.titlepage {
+	padding-top: 15%;
 }
 
 #title {
 	font-size: 70px;
 	text-align: center;
-	color: purple;
+	color: white;
+	font-weight: bold;
 }
+
+
 
 .searchcontainer {
     position: relative;
-    width: 400px;
+    width: 500px;
+    height: 40px;
     margin: 0 auto;
-
+    z-index: 99;
 }
 
-#artistsearchcontainer {
-	position: absolute;
-	text-align: center;
+.searchcontainernav {
+	position: fixed;
 	top: 0;
 	right: 0;
-	left: 0;
-	margin: auto;
-	margin-top: 20px;
+	margin-right: 10px;
+	margin-top: 5px;
+	width: 300px;
 	height: 40px;
+	z-index: 99;
 }
 
-
-input {
-	width: 100%;
-	height: 40px;
+input {	
+	position: absolute;
 	background-color: rgba(0,0,0,0.6);
-	font-size: 30px;
 	border: 0;
 	padding: 0px 5px;
 	display: inline-block;
 	box-sizing: border-box;
+	width: 100%;
+	height: 100%;
+	font-size: 30px;
 }
 
 .searchbuttons {
 	display: none;
 }
 
+.spelling {
+	font-size: 20px;
+	color: white;
+	position: relative;
+	top: 42px;
+	left: 2px;
+}
+
 
 #results {
-	margin-top: 40px;
+	margin-top: 120px;
 }
 
-.upcoming {
-	margin-left: 5%;
+#upcoming {
+	margin-left: 3%;
+	text-shadow: 0px 0px 20px #000000;
 }
 
 
-h4, p {
+p {
 	margin: 0;
 }
-.eventlist, .eventlisttest {
+#eventlist {
 	border-width: 5px;
 	margin: 0 5%;
 	background-color: rgba(116, 40, 128, 0.6);
 	box-sizing: border-box;
-	padding: 5px;
 	border-radius: 5px;
-
-
+	padding: 5px;
 }
 
+.eventitem {
+	padding-bottom: 20px;
+}
+
+.mapbutton {
+	border: 0;
+	border-radius: 5px;
+	color: white;
+	background-color: rgba(0, 0, 0, 0.6);
+	height: 30px;
+	width: 90px;
+	font-size: 16px;
+	display: inline-block;
+}
+
+.tixbutton {
+	border: 0;
+	border-radius: 5px;
+	color: white;
+	background-color: rgba(0, 0, 0, 0.6);
+	height: 30px;
+	width: 90px;
+	font-size: 16px;
+	display: inline-block;
+	margin-left: 5px;
+}
+
+.venue {
+	font-size: 28px;
+}
 
 #map {
 	height: 400px;
-    width: 500px;
-    background-color: red;
+    width: 100%;
+    position: absolute;
 }
 
 #mapcontainer {
     height: 400px;
-    width: 500px;
-    position: fixed;
-    top: 32%;
-    right: 7%;
+    width: 100%;
+    position: relative;
+    margin: 0;
 }
 
 #noresults {
 	color: red;
+	font-size: 24px;
 }
 
+.loading {
+	color: white;
+}
 
 .hidden {
 	display: none;
