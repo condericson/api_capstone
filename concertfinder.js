@@ -7,7 +7,7 @@ $('.loading, .pagecover').addClass('hidden');
 
 //Jambase Api url and key
 var jambaseApp = {
-	jambaseApi: 'http://api.jambase.com',
+	jambaseApi: 'https://api.jambase.com',
 	jambaseApiKey: 'dmuv2jdmqbcad4yhdwshehf5'
 };
 
