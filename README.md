@@ -12,5 +12,5 @@ You can access Concert Finder at https://condericson.github.io/concertfinder/
 
 ##Technical
 * The app is built using HTML5, CSS3, and Javascript with jQuery.
-* The app is fully responsive, adapting for mobile, table and desktop viewports.
-* The app gathers information through API's from Jambase and Google Maps.
+* The app is fully responsive, adapting for mobile, table and desktop viewports. (under construction)
+* The app gathers information through API's from Seatgeek and Google Maps.
