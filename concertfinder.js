@@ -3,70 +3,53 @@ $(document).ready(function() {
 $('.loading, .pagecover').addClass('hidden');
 
 
-//JAMBASE SEARCH AND API FUNCTIONS
+//SeatGeek SEARCH AND API FUNCTIONS
 
-//Jambase Api url and key
-var jambaseApp = {
-	jambaseApi: 'https://api.jambase.com',
-	jambaseApiKey: 'dmuv2jdmqbcad4yhdwshehf5'
+//SeatGeek Api url and key
+var seatGeekApp = {
+	seatGeekUrl: 'https://api.seatgeek.com/2/',
+	seatGeekClientId: 'NjUzMjM5NXwxNDgzMTQwMjE0',
+	seatGeekClientSecret: '5Xm4mtBvDFo04t4YznGgp9f07kLayQ5wk5y-oMvD'
 };
 
 //Event listener for displaying events of searched artist
 $('.js-search-form').submit(function(event) {
 	event.preventDefault();
-	$(this).find('.spelling').remove();
 	$(this).find('#noresults').remove();
 	$('#eventlist').html("<h1 class='loading'>Loading...</h1>")
 	console.log($('#js-artist').val())
-	getJambaseArtistId(jambaseApp, $('#js-artist').val());	
+	var correctedName = $('#js-artist').val().replace(/\s+/g, '-');
+	$('.artistname').text("");
+	$('.artistname').text($('#js-artist').val());
+	console.log(correctedName);
+	getEventInfo(seatGeekApp, correctedName);	
 })
 
 //function for obtaining artistID from search
-function getJambaseArtistId(jambaseApp, name) {
-	var url = jambaseApp.jambaseApi + '/artists';
+function getEventInfo(seatGeekApp, name) {
+	var url = seatGeekApp.seatGeekUrl + '/events';
 	var params = {
-		name: name,
-		page: 0,
-		api_key: jambaseApp.jambaseApiKey
+		client_id: seatGeekApp.seatGeekClientId,
+		client_secret: seatGeekApp.seatGeekClientSecret,
+		'performers.slug': name,
 	}
 	$.getJSON(url, params, function(data) {
 		console.log(data);
-		if (data.Artists.length == 0) {
+		if (data.meta.total == 0) {
 			console.log('No results found');
+			$('#eventlist').find($('.loading')).remove();
+			$('.js-search-form').find('.spelling').remove();
 			$('.js-search-form').append('<p class="spelling">No results found. Check the spelling?</p>')
-
 		}
 		else if (data) {
 			$('.js-search-form').find($('.spelling')).remove();
-			$('.artistname').text("");
-			$('.artistname').text(data.Artists[0].Name);
-			getJambaseEvents(jambaseApp, data.Artists[0].Id);
+			/*$('.artistname').text("");
+			$('.artistname').text(data.events[0].title);*/
+			displayEvents(data);
 		}
 		else {
 			console.log('No results found');
 		}
-	})
-}
-
-//function for obtaining events from artistID
-function getJambaseEvents(jambaseApp, artistId) {
-	var url = jambaseApp.jambaseApi + '/events';
-	var params = {
-		artistId: artistId,
-		page: 0,
-		api_key: jambaseApp.jambaseApiKey
-	}
-	$.getJSON(url, params, function(data){
-		console.log(data);
-		if (data.Events.length == 0){
-			$('.js-search-form').append('<p id="noresults">No results found</p>');
-			;
-		}
-		else {
-			
-			displayEvents(data);	
-		}
-		
 	})
 }
 
@@ -74,7 +57,7 @@ function getJambaseEvents(jambaseApp, artistId) {
 function displayEvents(data) {
 	//clear out event list
 	$('#eventlist').html("");
-	var eventDetails = data.Events;
+	var eventDetails = data.events;
 	var month = null;
 	$('.titlepage').addClass('hidden');
 	$('#nav, #eventlist').removeClass('hidden');
@@ -83,28 +66,31 @@ function displayEvents(data) {
 	$('#search').addClass('searchcontainernav');
 	eventDetails.forEach(function(object) {	
 		var monthName = "";
-		if (month !== moment(object.Date).format('MM')) {
-			monthName = `<span class="month">${moment(object.Date).format("MMMM YY")}</span>`;
-			month = moment(object.Date).format('MM');
+		if (month !== moment(object.datetime_local).format('MM')) {
+			monthName = `<span class="month">${moment(object.datetime_local).format("MMMM YYYY")}</span>`;
+			month = moment(object.datetime_local).format('MM');
 		}
 		var tickets = "";
 		if (object.TicketUrl !== "") {
-			tickets = '<a href="' + object.TicketUrl + '" target="_blank"><button class="tixbutton">Tickets!</button></a>';
+			tickets = '<a href="' + object.url + '" target="_blank"><button class="tixbutton">Tickets!</button></a>';
 		}
 			$('#eventlist').append(
 		      '<div class="eventitem">' +
 		      monthName + 
-		      '<p class="venue">' + object.Venue.Name + '</p>' +
-		      '<p class="date">' + moment(object.Date).format("LLL") + '</p>' +
-		      '<p class="address">' + object.Venue.Address + ' ' + object.Venue.City + ', ' + object.Venue.State + ' ' + 
-		      object.Venue.ZipCode + '</p>' + 
+		      '<p class="artists">' + object.title + ' at <span class="venue">' + object.venue.name + '</span></p>' +
+		      '<p class="date">' + moment(object.datetime_local).format("LLL") + '</p>' +
+		      '<p class="address">' + object.venue.address + ' ' + object.venue.extended_address + '</p>' + 
 		      '<button class="mapbutton">Map it!</button>' + tickets +
-		      '<input type="hidden" class="lat" value="' + object.Venue.Latitude + '">' +
-		      '<input type="hidden" class="lng" value="' + object.Venue.Longitude + '">' +
+		      '<input type="hidden" class="lat" value="' + object.venue.location.lat + '">' +
+		      '<input type="hidden" class="lng" value="' + object.venue.location.lon + '">' +
 		      '</div>'
 		      );		
 	})
 }
+
+
+
+
 
 
 //GOOGLE MAPPING API AND FUNCTIONS
