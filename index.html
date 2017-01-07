@@ -4,38 +4,35 @@
 	<meta charset="UTF-8">
 	<link rel="stylesheet" type="text/css" href="concertfinder.css">
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto">
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
 	<title>Concert Finder</title>
 </head>
-<div class="backgroundimg" no-repeat></div>
 <body>
-
   <div class="pagecover"></div>
   <div class="loading">Loading...</div>
-
-  <nav id="nav" class="hidden">
-    <header id="navtitle">Concert Finder</header>
-  </nav>
-
-  <div class="titlepage">
-    <header id="title">Concert Finder</header>
-  </div>
-
-  <div id="search" class="searchcontainer">
-    <form action="#" class="js-search-form">
-      <input type="text" name="js-artist" id="js-artist" class="js-artist, maininput" placeholder="Who's the artist?" autocomplete="off">
-      <div class="buttoncenter"><button type="submit" class="searchbuttons">Where's the party?</button></div>
-    </form>
-  </div>
   
-  <div id="results">
-    <h1 id="upcoming" class="hidden">Upcoming events for <span class="artistname"></span></h1>
-    <div id="eventlist" class="hidden"></div>
+
+  <div class="container">
+    <header>
+      <nav id="nav" class="nav1">
+         <p id="navtitle" class="navtitle1">Concert Finder</p>
+          <div id="search" class="searchcontainer1">
+            <form action="#" id="js-search-form" class="form1">
+              <input type="text" name="js-artist" id="js-artist" class="js-artist, maininput" placeholder="Who's the artist?" autocomplete="off">
+              <div class="buttoncenter"><button type="submit" class="searchbutton">></button></div>
+            </form>
+          </div>
+      </nav>
+    </header>
+    <main>
+      <div id="results">
+        <h1 id="upcoming" class="hidden">Upcoming events for <span class="artistname"></span></h1>
+        <div id="eventlist" class="hidden"></div>
+      </div>
+    </main>
+    
+    <footer class="powered">Powered by <a href="https://www.seatgeek.com">SeatGeek</a> and <a href="https://www.google.com/maps">Google Maps</a>.</footer>
   </div>
-
-
-
-
-<footer class="powered">Powered by <a href="https://www.seatgeek.com">SeatGeek</a> and <a href="https://www.google.com/maps">Google Maps</a>.</footer>
 
   <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
   <script type="text/javascript" src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js'></script>

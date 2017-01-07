@@ -13,7 +13,7 @@ var seatGeekApp = {
 };
 
 //Event listener for displaying events of searched artist
-$('.js-search-form').submit(function(event) {
+$('#js-search-form').submit(function(event) {
 	event.preventDefault();
 	$(this).find('#noresults').remove();
 	$('#eventlist').html("<h1 class='loading'>Loading...</h1>")
@@ -38,11 +38,11 @@ function getEventInfo(seatGeekApp, name) {
 		if (data.meta.total == 0) {
 			console.log('No results found');
 			$('#eventlist').find($('.loading')).remove();
-			$('.js-search-form').find('.spelling').remove();
-			$('.js-search-form').append('<p class="spelling">No results found. Check the spelling?</p>')
+			$('#js-search-form').find('.spelling').remove();
+			$('#js-search-form').append('<p class="spelling">No results found. Check the spelling?</p>')
 		}
 		else if (data) {
-			$('.js-search-form').find($('.spelling')).remove();
+			$('#js-search-form').find($('.spelling')).remove();
 			/*$('.artistname').text("");
 			$('.artistname').text(data.events[0].title);*/
 			displayEvents(data);
@@ -59,11 +59,14 @@ function displayEvents(data) {
 	$('#eventlist').html("");
 	var eventDetails = data.events;
 	var month = null;
-	$('.titlepage').addClass('hidden');
-	$('#nav, #eventlist').removeClass('hidden');
+	$('#eventlist').removeClass('hidden');
+	$('#nav').removeClass('nav1');
+	$('#nav').addClass('nav2');
+	$('#navtitle').removeClass('navtitle1');
+	$('#navtitle').addClass('navtitle2');
+	$('#search').removeClass('searchcontainer1');
+	$('#search').addClass('searchcontainer2');
 	$('#upcoming').removeClass('hidden');
-	$('#search').removeClass('searchcontainer');
-	$('#search').addClass('searchcontainernav');
 	eventDetails.forEach(function(object) {	
 		var monthName = "";
 		if (month !== moment(object.datetime_local).format('MM')) {
