@@ -66,6 +66,8 @@ function displayEvents(data) {
 	$('#navtitle').addClass('navtitle2');
 	$('#search').removeClass('searchcontainer1');
 	$('#search').addClass('searchcontainer2');
+	$('#powered').removeClass('powered1');
+	$('#powered').addClass('powered2');
 	$('#upcoming').removeClass('hidden');
 	eventDetails.forEach(function(object) {	
 		var monthName = "";
@@ -104,7 +106,7 @@ $('#eventlist').on('click', '.mapbutton', function(event) {
 	var container = $(this).parent();
 	var eventlistcontainer = $(this).parent().parent();
 	eventlistcontainer.find('#mapcontainer').remove();
-	container.append('<div id="mapcontainer"><div id="map"></div></div>');
+	container.append('<div id="mapcontainer"><div class="closebutton"><span class="x">x</span></div><div id="map"></div></div>');
 	google.maps.event.trigger(map, 'resize');
 	initMap($(this));
 })
@@ -123,6 +125,12 @@ function initMap(button) {
 	  map: map
 	});
 }
+
+$('#eventlist').on('click', '.closebutton', function(event) {
+	event.preventDefault();
+	var eventlistcontainer = $(this).parent().parent();
+	eventlistcontainer.find('#mapcontainer').remove();
+})
 
 
 });
