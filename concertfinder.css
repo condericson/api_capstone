@@ -1,520 +1,449 @@
 * {
-	font-family: Roboto;
-	color: white;
+    font-family: Roboto;
+    color: white;
 }
-
 .loading {
-	font-size: 70px;
-	top: 40%;
-	left: 40%;
-	text-align: center;
-	color: white;
-	position: fixed;
-	z-index: 201;
+    font-size: 70px;
+    top: 40%;
+    left: 40%;
+    text-align: center;
+    color: white;
+    position: fixed;
+    z-index: 201;
 }
-
 .pagecover {
-	width: 100%;
-	height: 100%;
-	background-color: purple;
-	z-index: 200;
-	position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: purple;
+    z-index: 200;
+    position: fixed;
 }
-
 html, body {
-	margin: 0;
-	width: 100%;
-	height: 100%;
+    margin: 0;
+    width: 100%;
+    height: 100%;
 }
-
 body {
-	background: url('crowdcropped.png') center center no-repeat fixed;
-	background-size: cover;
+    background: url('crowdcropped.png') center center no-repeat fixed;
+    background-size: cover;
 }
-
 .container {
-	z-index: 150;
+    z-index: 150;
+    background-color: rgba(38, 0, 38, 0.88);
 }
-
-
-
 /* RESPONSIVE CSS */
-
 /* Smartphones (landscape) ----------- */
 @media only screen 
 and (min-width : 320px) {
-
-	.nav1 {
-		margin-top: 275px;
-		width: 100%;
-		position: fixed;
-		top: 0;
-		left: 0;
-		z-index: 99;
-	}
-
-	.nav2 {
-		background-color: #5F1A7D;
-		width: 100%;
-		height: 87px;
-		position: fixed;
-		top: 0;
-		left: 0;
-		z-index: 99;
-	}
-
-	.navtitle1 {
-		text-align: center;
-		font-size: 70px;
-		font-weight: 700;
-	    font-family: Trebuchet MS;
-	    color: white;
-	    margin: 0;
-	    text-shadow: 0px 0px 20px #000000;
-	}
-
-	.navtitle2 {
-		position: absolute;
-		font-size: 63px;
-		font-weight: 700;
-	    font-family: Trebuchet MS;
-	    color: white;
-		margin: 0;
-		padding-left: 5px;
-		padding-top: 5px;
-		width: 460px;
-	}
-
-
-
-	.searchcontainer1 {
-	    position: relative;
-	    width: 500px;
-	    height: 40px;
-	    margin: 0 auto;
-	    z-index: 99;
-	}
-
-	.searchcontainer2 {
-	    position: absolute;
-	    top: 0;
-	    right: 0;
-	    width: 500px;
-	    height: 70px;
-	    z-index: 99;
-	    padding: 5px;
-	}
-
-	input {	
-		position: absolute;
-		background-color: rgba(0,0,0,0.6);
-		border: 0;
-		padding-left: 5px;
-		display: inline-block;
-		box-sizing: border-box;
-		font-size: 50px;
-		height: 76px;
-		width: 450px;
-		border-radius: 5px;
-	}
-
-	.buttoncenter {
-		position: relative;
-	}
-
-	.searchbutton {
-		position: absolute;
-		right: 0;
-		height: 76px;
-		width: 40px;
-		text-align: center;
-		background-color: rgba(0,0,0,0.6);
-		border-radius: 5px;
-		border: 0;
-		font-size: 30px;
-		font-family: Lato;
-		color: rgba(254,254,254,0.7);
-	}
-
+    .nav1 {
+        margin-top: 275px;
+        width: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 99;
+    }
+    .nav2 {
+        background-color: #5F1A7D;
+        width: 100%;
+        height: 87px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 99;
+    }
+    .navtitle1 {
+        text-align: center;
+        font-size: 70px;
+        font-weight: 700;
+        font-family: Trebuchet MS;
+        color: white;
+        margin: 0;
+        text-shadow: 0px 0px 20px #000000;
+    }
+    .navtitle2 {
+        position: absolute;
+        font-size: 63px;
+        font-weight: 700;
+        font-family: Trebuchet MS;
+        color: white;
+        margin: 0;
+        padding-left: 5px;
+        padding-top: 5px;
+        width: 460px;
+    }
+    .searchcontainer1 {
+        position: relative;
+        width: 500px;
+        height: 40px;
+        margin: 0 auto;
+        z-index: 99;
+    }
+    .searchcontainer2 {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 500px;
+        height: 70px;
+        z-index: 99;
+        padding: 5px;
+    }
+    input { 
+        position: absolute;
+        background-color: rgba(0,0,0,0.6);
+        border: 0;
+        padding-left: 5px;
+        display: inline-block;
+        box-sizing: border-box;
+        font-size: 50px;
+        height: 76px;
+        width: 450px;
+        border-radius: 5px;
+    }
+    .buttoncenter {
+        position: relative;
+    }
+    .searchbutton {
+        position: absolute;
+        right: 0;
+        height: 76px;
+        width: 40px;
+        text-align: center;
+        background-color: rgba(0,0,0,0.6);
+        border-radius: 5px;
+        border: 0;
+        font-size: 30px;
+        font-family: Lato;
+        color: rgba(254,254,254,0.7);
+    }
 }
-
 /* Smartphones (portrait) ----------- */
 @media only screen 
 and (max-width : 320px) {
-
-	.nav1 {
-		margin-top: 275px;
-		width: 100%;
-		position: fixed;
-		top: 0;
-		left: 0;
-		z-index: 99;
-	}
-
-	.nav2 {
-		background-color: #5F1A7D;
-		width: 100%;
-		height: 87px;
-		position: fixed;
-		top: 0;
-		left: 0;
-		z-index: 99;
-	}
-
-	.navtitle1 {
-		text-align: center;
-		font-size: 70px;
-		font-weight: 700;
-	    font-family: Trebuchet MS;
-	    color: white;
-	    margin: 0;
-	    text-shadow: 0px 0px 20px #000000;
-	}
-
-	.navtitle2 {
-		position: absolute;
-		font-size: 63px;
-		font-weight: 700;
-	    font-family: Trebuchet MS;
-	    color: white;
-		margin: 0;
-		padding-left: 5px;
-		padding-top: 5px;
-		width: 460px;
-	}
-
-
-
-	.searchcontainer1 {
-	    position: relative;
-	    width: 500px;
-	    height: 40px;
-	    margin: 0 auto;
-	    z-index: 99;
-	}
-
-	.searchcontainer2 {
-	    position: absolute;
-	    top: 0;
-	    right: 0;
-	    width: 500px;
-	    height: 70px;
-	    z-index: 99;
-	    padding: 5px;
-	}
-
-	input {	
-		position: absolute;
-		background-color: rgba(0,0,0,0.6);
-		border: 0;
-		padding-left: 5px;
-		display: inline-block;
-		box-sizing: border-box;
-		font-size: 50px;
-		height: 76px;
-		width: 450px;
-		border-radius: 5px;
-	}
-
-	.buttoncenter {
-		position: relative;
-	}
-
-	.searchbutton {
-		position: absolute;
-		right: 0;
-		height: 76px;
-		width: 40px;
-		text-align: center;
-		background-color: rgba(0,0,0,0.6);
-		border-radius: 5px;
-		border: 0;
-		font-size: 30px;
-		font-family: Lato;
-		color: rgba(254,254,254,0.7);
-	}
-
-
+    .nav1 {
+        margin-top: 275px;
+        width: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 99;
+    }
+    .nav2 {
+        background-color: #5F1A7D;
+        width: 100%;
+        height: 87px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 99;
+    }
+    .navtitle1 {
+        text-align: center;
+        font-size: 70px;
+        font-weight: 700;
+        font-family: Trebuchet MS;
+        color: white;
+        margin: 0;
+        text-shadow: 0px 0px 20px #000000;
+    }
+    .navtitle2 {
+        position: absolute;
+        font-size: 63px;
+        font-weight: 700;
+        font-family: Trebuchet MS;
+        color: white;
+        margin: 0;
+        padding-left: 5px;
+        padding-top: 5px;
+        width: 460px;
+    }
+    .searchcontainer1 {
+        position: relative;
+        width: 500px;
+        height: 40px;
+        margin: 0 auto;
+        z-index: 99;
+    }
+    .searchcontainer2 {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 500px;
+        height: 70px;
+        z-index: 99;
+        padding: 5px;
+    }
+    input { 
+        position: absolute;
+        background-color: rgba(0,0,0,0.6);
+        border: 0;
+        padding-left: 5px;
+        display: inline-block;
+        box-sizing: border-box;
+        font-size: 50px;
+        height: 76px;
+        width: 450px;
+        border-radius: 5px;
+    }
+    .buttoncenter {
+        position: relative;
+    }
+    .searchbutton {
+        position: absolute;
+        right: 0;
+        height: 76px;
+        width: 40px;
+        text-align: center;
+        background-color: rgba(0,0,0,0.6);
+        border-radius: 5px;
+        border: 0;
+        font-size: 30px;
+        font-family: Lato;
+        color: rgba(254,254,254,0.7);
+    }
 }
-
 /* iPads (portrait and landscape) ----------- */
 @media only screen 
 and (min-device-width : 768px) 
 and (max-device-width : 1024px) {
-
-
-
-	.nav1 {
-		margin-top: 275px;
-		width: 100%;
-		position: fixed;
-		top: 0;
-		left: 0;
-		z-index: 99;
-	}
-
-	.nav2 {
-		background-color: #5F1A7D;
-		width: 100%;
-		height: 47px;
-		position: fixed;
-		top: 0;
-		left: 0;
-		z-index: 99;
-	}
-
-	.navtitle1 {
-		text-align: center;
-		font-size: 70px;
-		font-weight: 700;
-	    font-family: Trebuchet MS;
-	    color: white;
-	    margin: 0;
-	    text-shadow: 0px 0px 20px #000000;
-	}
-
-	.navtitle2 {
-		position: absolute;
-		font-size: 40px;
-		font-weight: 700;
-	    font-family: Trebuchet MS;
-	    color: white;
-		margin: 0;
-		padding-left: 5px;
-		width: 400px;
-	}
-
-
-
-	.searchcontainer1 {
-	    position: relative;
-	    width: 600px;
-	    height: 40px;
-	    margin: 0 auto;
-	    z-index: 99;
-	}
-
-	.searchcontainer2 {
-	    position: absolute;
-	    top: 0;
-	    right: 0;
-	    width: 400px;
-	    height: 40px;
-	    z-index: 99;
-	    padding: 5px;
-	}
-
-	input {	
-		position: absolute;
-		background-color: rgba(0,0,0,0.6);
-		border: 0;
-		padding-left: 5px;
-		display: inline-block;
-		box-sizing: border-box;
-		font-size: 30px;
-		height: auto;
-		width: 553px;
-		border-radius: 5px;
-	}
-
-	.buttoncenter {
-		position: relative;
-	}
-
-	.searchbutton {
-		position: absolute;
-		right: 0;
-		height: 39px;
-		width: 40px;
-		text-align: center;
-		background-color: rgba(0,0,0,0.6);
-		border-radius: 5px;
-		border: 0;
-		font-size: 30px;
-		font-family: Lato;
-		color: rgba(254,254,254,0.7);
-	}
-
+    .nav1 {
+        margin-top: 275px;
+        width: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 99;
+    }
+    .nav2 {
+        background-color: #5F1A7D;
+        width: 100%;
+        height: 47px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 99;
+    }
+    .navtitle1 {
+        text-align: center;
+        font-size: 70px;
+        font-weight: 700;
+        font-family: Trebuchet MS;
+        color: white;
+        margin: 0;
+        text-shadow: 0px 0px 20px #000000;
+    }
+    .navtitle2 {
+        position: absolute;
+        font-size: 40px;
+        font-weight: 700;
+        font-family: Trebuchet MS;
+        color: white;
+        margin: 0;
+        padding-left: 5px;
+        width: 400px;
+    }
+    .searchcontainer1 {
+        position: relative;
+        width: 600px;
+        height: 40px;
+        margin: 0 auto;
+        z-index: 99;
+    }
+    .searchcontainer2 {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 400px;
+        height: 40px;
+        z-index: 99;
+        padding: 5px;
+    }
+    input { 
+        position: absolute;
+        background-color: rgba(0,0,0,0.6);
+        border: 0;
+        padding-left: 5px;
+        display: inline-block;
+        box-sizing: border-box;
+        font-size: 30px;
+        height: auto;
+        width: 553px;
+        border-radius: 5px;
+    }
+    .buttoncenter {
+        position: relative;
+    }
+    .searchbutton {
+        position: absolute;
+        right: 0;
+        height: 39px;
+        width: 40px;
+        text-align: center;
+        background-color: rgba(0,0,0,0.6);
+        border-radius: 5px;
+        border: 0;
+        font-size: 30px;
+        font-family: Lato;
+        color: rgba(254,254,254,0.7);
+    }
 }
-
 /* Desktops, laptops, and large screens----------- */
 @media only screen 
 and (min-width : 1025px) {
-
-	.nav1 {
-		margin-top: 275px;
-		width: 100%;
-		position: fixed;
-		top: 0;
-		left: 0;
-		z-index: 99;
-	}
-
-	.nav2 {
-		background-color: #5F1A7D;
-		width: 100%;
-		height: 47px;
-		position: fixed;
-		top: 0;
-		left: 0;
-		z-index: 99;
-	}
-
-	.navtitle1 {
-		text-align: center;
-		font-size: 70px;
-		font-weight: 700;
-	    font-family: Trebuchet MS;
-	    color: white;
-	    margin: 0;
-	    text-shadow: 0px 0px 20px #000000;
-	}
-
-	.navtitle2 {
-		position: absolute;
-		font-size: 40px;
-		font-weight: 700;
-	    font-family: Trebuchet MS;
-	    color: white;
-		margin: 0;
-		padding-left: 5px;
-		width: 400px;
-	}
-
-
-
-	.searchcontainer1 {
-	    position: relative;
-	    width: 400px;
-	    height: 40px;
-	    margin: 0 auto;
-	    z-index: 99;
-	}
-	
-	.searchcontainer2 {
-	    position: absolute;
-	    top: 0;
-	    right: 0;
-	    width: 400px;
-	    height: 40px;
-	    z-index: 99;
-	    padding: 5px;
-	}
-	
-	input {	
-		position: absolute;
-		background-color: rgba(0,0,0,0.6);
-		border: 0;
-		padding-left: 5px;
-		display: inline-block;
-		box-sizing: border-box;
-		font-size: 30px;
-		height: auto;
-		border-radius: 5px;
-		width: 355px;
-	}
-
-	.buttoncenter {
-		position: relative;
-	}
-
-	.searchbutton {
-		position: absolute;
-		right: 0;
-		height: 39px;
-		width: 40px;
-		text-align: center;
-		background-color: rgba(0,0,0,0.6);
-		border-radius: 5px;
-		border: 0;
-		font-size: 30px;
-		font-family: Lato;
-		color: rgba(254,254,254,0.7);
-	}
-
-
+    .nav1 {
+        margin-top: 275px;
+        width: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 99;
+    }
+    .nav2 {
+        background-color: #5F1A7D;
+        width: 100%;
+        height: 47px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 99;
+    }
+    .navtitle1 {
+        text-align: center;
+        font-size: 70px;
+        font-weight: 700;
+        font-family: Trebuchet MS;
+        color: white;
+        margin: 0;
+        text-shadow: 0px 0px 20px #000000;
+    }
+    .navtitle2 {
+        position: absolute;
+        font-size: 40px;
+        font-weight: 700;
+        font-family: Trebuchet MS;
+        color: white;
+        margin: 0;
+        padding-left: 5px;
+        width: 400px;
+    }
+    .searchcontainer1 {
+        position: relative;
+        width: 400px;
+        height: 40px;
+        margin: 0 auto;
+        z-index: 99;
+    }
+    
+    .searchcontainer2 {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 400px;
+        height: 40px;
+        z-index: 99;
+        padding: 5px;
+    }
+    
+    input { 
+        position: absolute;
+        background-color: rgba(0,0,0,0.6);
+        border: 0;
+        padding-left: 5px;
+        display: inline-block;
+        box-sizing: border-box;
+        font-size: 30px;
+        height: auto;
+        border-radius: 5px;
+        width: 355px;
+    }
+    .buttoncenter {
+        position: relative;
+    }
+    .searchbutton {
+        position: absolute;
+        right: 0;
+        height: 39px;
+        width: 40px;
+        text-align: center;
+        background-color: rgba(0,0,0,0.6);
+        border-radius: 5px;
+        border: 0;
+        font-size: 30px;
+        font-family: Lato;
+        color: rgba(254,254,254,0.7);
+    }
 }
-
-
 /* END OF RESPONSIVE CSS */
-
-
 .spelling {
-	font-size: 20px;
-	font-weight: bold;
-	color: red;
-	position: relative;
-	top: 45px;
-	left: 2px;
-	z-index: 400;
-	text-shadow: 0px 0px 10px #000000;
-	margin-top: 0;
+    font-size: 20px;
+    font-weight: bold;
+    color: red;
+    position: relative;
+    top: 45px;
+    left: 2px;
+    z-index: 400;
+    text-shadow: 0px 0px 10px #000000;
+    margin-top: 0;
 }
-
-
 #results {
-	margin-top: 120px;
+    padding: 80px 4%;
 }
-
 #upcoming {
-	margin-left: 3%;
-	text-shadow: 0px 0px 20px #000000;
+    margin-left: 3%;
+    text-shadow: 0px 0px 20px #000000;
+    text-align: center;
 }
-
-
 #eventlist {
-	border-width: 5px;
-	margin: 0 5%;
-	background-color: rgba(116, 40, 128, 0.6);
-	box-sizing: border-box;
-	border-radius: 5px;
-	/* padding: 5px; */
+    border-width: 5px;
+    margin: 0 5%;
+    background-color: rgba(116, 40, 128, 0.6);
+    box-sizing: border-box;
+    border-radius: 5px;
+    /* padding: 5px; */
 }
-
 .eventitem {
-	padding-bottom: 20px;
+    padding-bottom: 20px;
 }
-
 .month {
-	font-size: 42px;
+    font-size: 42px;
     font-weight: 700;
     font-family: Trebuchet MS;
-    padding-left: 10px;
+    padding: 20px 0px 20px;
+    display: block;
+    margin-bottom: 20px;
+    text-align: center;
+    background-color: black;
 }
-
 .mapbutton {
-	border: 0;
-	border-radius: 5px;
-	color: white;
-	background-color: rgba(0, 0, 0, 0.6);
-	height: 30px;
-	width: 90px;
-	font-size: 16px;
-	display: inline-block;
+    border: 0;
+    border-radius: 5px;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.6);
+    height: 30px;
+    width: 90px;
+    font-size: 16px;
+    display: inline-block;
 }
-
 .tixbutton {
-	border: 0;
-	border-radius: 5px;
-	color: white;
-	background-color: rgba(0, 0, 0, 0.6);
-	height: 30px;
-	width: 90px;
-	font-size: 16px;
-	display: inline-block;
-	margin-left: 5px;
+    border: 0;
+    border-radius: 5px;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.6);
+    height: 30px;
+    width: 90px;
+    font-size: 16px;
+    display: inline-block;
+    margin-left: 5px;
 }
-
 .venue, .artists {
-	font-size: 28px;
+    font-size: 28px;
+    line-height: 1.3em;
 }
-
 #map {
-	height: 400px;
+    height: 400px;
     width: 100%;
     position: absolute;
 }
-
 #mapcontainer {
     height: 400px;
     width: 90%;
@@ -523,9 +452,8 @@ and (min-width : 1025px) {
     margin-left: auto;
     margin-right: auto;
 }
-
 .closebutton {
-	width: 20px;
+    width: 20px;
     height: 20px;
     line-height: 8px;
     position: absolute;
@@ -537,55 +465,45 @@ and (min-width : 1025px) {
     font-size: 15px;
     background-color: black;
 }
-
 .x {
-	display: inline-block;
-  	vertical-align: middle;
-  	line-height: normal;	
+    display: inline-block;
+    vertical-align: middle;
+    line-height: normal;    
 }
-
 #noresults {
-	color: red;
-	font-size: 24px;
-	position: relative;
-	top: 50px;
-	left: 2px;
+    color: red;
+    font-size: 24px;
+    position: relative;
+    top: 50px;
+    left: 2px;
 }
-
 .loading {
-	color: white;
+    color: white;
 }
-
 .hidden {
-	display: none;
+    display: none;
 }
-
 .artists {
-	margin-left: 30px;
+    margin: 0 30px 10px;
 }
-
 .artists, .date, .address {
-	margin-top: 0;
-	margin-bottom: 0;
+    /* margin-top: 0; */
+    /* margin-bottom: 0; */
 }
-
 .date, .address, .mapbutton {
-	margin-left: 40px;
+    margin-left: 30px;
 }
-
 .address {
-	margin-bottom: 5px;
+    margin-bottom: 5px;
 }
-
 .powered1 {
-	width: 100%;
+    width: 100%;
     text-align: center;
     position: fixed;
     bottom: 5px;
 }
-
 .powered2 {
-	width: 100%;
+    width: 100%;
     text-align: center;
     position: relative;
     margin-bottom: 5px;

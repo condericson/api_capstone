@@ -69,6 +69,7 @@ function displayEvents(data) {
 	$('#powered').removeClass('powered1');
 	$('#powered').addClass('powered2');
 	$('#upcoming').removeClass('hidden');
+	$('#results').removeClass('hidden');
 	eventDetails.forEach(function(object) {	
 		var monthName = "";
 		if (month !== moment(object.datetime_local).format('MM')) {
