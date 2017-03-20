@@ -19,6 +19,7 @@ $('#js-search-form').submit(function(event) {
 	$('#eventlist').html("<h1 class='loading'>Loading...</h1>")
 	console.log($('#js-artist').val())
 	var correctedName = $('#js-artist').val().replace(/\s+/g, '-');
+	//.toLowerCase
 	$('.artistname').text("");
 	$('.artistname').text($('#js-artist').val());
 	console.log(correctedName);
