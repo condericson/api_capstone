@@ -18,8 +18,7 @@ $('#js-search-form').submit(function(event) {
 	$(this).find('#noresults').remove();
 	$('#eventlist').html("<h1 class='loading'>Loading...</h1>")
 	console.log($('#js-artist').val())
-	var correctedName = $('#js-artist').val().replace(/\s+/g, '-');
-	//.toLowerCase
+	var correctedName = $('#js-artist').val().toString().toLowerCase();
 	$('.artistname').text("");
 	$('.artistname').text($('#js-artist').val());
 	console.log(correctedName);
@@ -67,10 +66,16 @@ function displayEvents(data) {
 	$('#navtitle').addClass('navtitle2');
 	$('#search').removeClass('searchcontainer1');
 	$('#search').addClass('searchcontainer2');
+	$('#searchbutton').addClass('searchbutton2')
+	$('#searchbutton').removeClass('searchbutton')
 	$('#powered').removeClass('powered1');
 	$('#powered').addClass('powered2');
 	$('#upcoming').removeClass('hidden');
 	$('#results').removeClass('hidden');
+	$('#js-artist').addClass('inlinesearch');
+	$('#js-artist').removeClass('maininput');
+	$('.buttoncenter').addClass('buttoncenter2');
+	$('.form1').addClass('form2');
 	eventDetails.forEach(function(object) {	
 		var monthName = "";
 		if (month !== moment(object.datetime_local).format('MM')) {
