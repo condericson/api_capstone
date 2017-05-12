@@ -7,8 +7,8 @@ $('.loading, .pagecover').addClass('hidden');
 
 //SeatGeek Api url and key
 var jamBaseApp = {
-	jamBaseArtistUrl: 'http://api.jambase.com/artists',
-	jamBaseEventUrl: 'http://api.jambase.com/events',
+	jamBaseArtistUrl: 'https://api.jambase.com/artists',
+	jamBaseEventUrl: 'https://api.jambase.com/events',
 	jamBaseApiKey: 'dmuv2jdmqbcad4yhdwshehf5',
 };
 
