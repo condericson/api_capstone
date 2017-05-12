@@ -99,6 +99,7 @@ input {
     height: auto;
     border-radius: 5px;
     width: 86%;
+    outline: none;
 }
 .buttoncenter {
     position: relative;
@@ -106,7 +107,7 @@ input {
 .searchbutton {
     position: absolute;
     right: 0;
-    height: 33px;
+    height: 39px;
     width: 35px;
     text-align: center;
     background-color: rgba(0,0,0,0.6);
@@ -227,7 +228,7 @@ input {
 .x {
     display: inline-block;
     vertical-align: middle;
-    line-height: normal;    
+    line-height: normal;
 }
 #noresults {
     color: red;
@@ -268,6 +269,15 @@ input {
     position: relative;
     margin-bottom: 5px;
     margin-top: 5px;
+}
+
+.didYouMean {
+    padding: 80px 4%;
+}
+
+.artistOption {
+    list-style: none;
+    cursor: pointer;
 }
 
 @media only screen and (max-width: 715px) {

@@ -6,10 +6,10 @@ $('.loading, .pagecover').addClass('hidden');
 //SeatGeek SEARCH AND API FUNCTIONS
 
 //SeatGeek Api url and key
-var seatGeekApp = {
-	seatGeekUrl: 'https://api.seatgeek.com/2/',
-	seatGeekClientId: 'NjUzMjM5NXwxNDgzMTQwMjE0',
-	seatGeekClientSecret: '5Xm4mtBvDFo04t4YznGgp9f07kLayQ5wk5y-oMvD'
+var jamBaseApp = {
+	jamBaseArtistUrl: 'http://api.jambase.com/artists',
+	jamBaseEventUrl: 'http://api.jambase.com/events',
+	jamBaseApiKey: 'dmuv2jdmqbcad4yhdwshehf5',
 };
 
 //Event listener for displaying events of searched artist
@@ -17,86 +17,130 @@ $('#js-search-form').submit(function(event) {
 	event.preventDefault();
 	$(this).find('#noresults').remove();
 	$('#eventlist').html("<h1 class='loading'>Loading...</h1>")
-	console.log($('#js-artist').val())
-	var correctedName = $('#js-artist').val().toString().toLowerCase();
 	$('.artistname').text("");
 	$('.artistname').text($('#js-artist').val());
+	var correctedName = $('#js-artist').val().toString();
 	console.log(correctedName);
-	getEventInfo(seatGeekApp, correctedName);	
+	getArtistName(jamBaseApp, correctedName);
 })
 
 //function for obtaining artistID from search
-function getEventInfo(seatGeekApp, name) {
-	var url = seatGeekApp.seatGeekUrl + '/events';
+function getArtistName(jamBaseApp, name) {
+	let artistId;
+	$('#js-search-form').find('.spelling').remove();
+	var artistUrl = jamBaseApp.jamBaseArtistUrl;
 	var params = {
-		client_id: seatGeekApp.seatGeekClientId,
-		client_secret: seatGeekApp.seatGeekClientSecret,
-		'performers.slug': name,
+		'api_key': jamBaseApp.jamBaseApiKey,
+		'name': name,
+		'page': 0
 	}
-	$.getJSON(url, params, function(data) {
-		console.log(data);
-		if (data.meta.total == 0) {
+	$.getJSON(artistUrl, params, function(data) {
+		console.log("artist data", data);
+		if (data.Artists.length > 1) {
+			return loadDidYouMean(data);
+		}
+		if (data.Artists.length == 0) {
 			console.log('No results found');
 			$('#eventlist').find($('.loading')).remove();
-			$('#js-search-form').find('.spelling').remove();
+			$('#js-search-form').append('<p class="spelling">No results found. Check the spelling?</p>');
+			return;
+		}
+		if (data.Artists.length == 1) {
+			console.log(data.Artists);
+			artistId=data.Artists[0].Id;
+			console.log("artistId", artistId);
+			return getEventList(artistId, jamBaseApp);
+		}
+	});
+}
+
+function getEventList(artistId, jamBaseApp) {
+	$('#js-search-form').find('.spelling').remove();
+	$('.didYouMean').addClass('hidden');
+	var eventUrl = jamBaseApp.jamBaseEventUrl;
+	var params = {
+		'api_key': jamBaseApp.jamBaseApiKey,
+		'artistId': artistId,
+		'page': 0
+	}
+	$.getJSON(eventUrl, params, function(data) {
+		console.log(data);
+		if (data.Info.TotalResults == 0) {
+			console.log('No results found');
+			$('#eventlist').find($('.loading')).remove();
 			$('#js-search-form').append('<p class="spelling">No results found. Check the spelling?</p>')
 		}
 		else if (data) {
 			$('#js-search-form').find($('.spelling')).remove();
-			/*$('.artistname').text("");
-			$('.artistname').text(data.events[0].title);*/
 			displayEvents(data);
 		}
 		else {
 			console.log('No results found');
 		}
 	})
+	return;
 }
+
+function loadDidYouMean(data) {
+	$('.didYouMeanUl').html('');
+	$('.didYouMean').removeClass('hidden');
+	$('#eventlist').addClass('hidden');
+	changeClasses();
+	console.log('loadDidYouMean() running');
+	console.log("DATA", data)
+		for (var i = 0; i < data.Artists.length; i++) {
+			var element = data.Artists[i];
+			$('.didYouMeanUl').append(`<li id="${element.Id}" class="artistOption">${element.Name}</li>`)
+		}
+}
+
+$('.didYouMeanUl').on('click', '.artistOption', function(element) {
+	var artistId = element.target.id;
+	return getEventList(artistId, jamBaseApp);
+})
 
 //function for displaying Events
 function displayEvents(data) {
 	//clear out event list
 	$('#eventlist').html("");
-	var eventDetails = data.events;
-	var month = null;
+	var eventDetails = data.Events;
+	$('.didYouMean').addClass('hidden');
 	$('#eventlist').removeClass('hidden');
-	$('#nav').removeClass('nav1');
-	$('#nav').addClass('nav2');
-	$('#navtitle').removeClass('navtitle1');
-	$('#navtitle').addClass('navtitle2');
-	$('#search').removeClass('searchcontainer1');
-	$('#search').addClass('searchcontainer2');
-	$('#searchbutton').addClass('searchbutton2')
-	$('#searchbutton').removeClass('searchbutton')
-	$('#powered').removeClass('powered1');
-	$('#powered').addClass('powered2');
 	$('#upcoming').removeClass('hidden');
 	$('#results').removeClass('hidden');
-	$('#js-artist').addClass('inlinesearch');
-	$('#js-artist').removeClass('maininput');
-	$('.buttoncenter').addClass('buttoncenter2');
-	$('.form1').addClass('form2');
-	eventDetails.forEach(function(object) {	
+	changeClasses();
+	var month = null;
+	eventDetails.forEach(function(object) {
 		var monthName = "";
-		if (month !== moment(object.datetime_local).format('MM')) {
-			monthName = `<span class="month">${moment(object.datetime_local).format("MMMM YYYY")}</span>`;
-			month = moment(object.datetime_local).format('MM');
+		if (month !== moment(object.Date).format('MM')) {
+			monthName = `<span class="month">${moment(object.Date).format("MMMM YYYY")}</span>`;
+			month = moment(object.Date).format('MM');
 		}
 		var tickets = "";
 		if (object.TicketUrl !== "") {
 			tickets = '<a href="' + object.url + '" target="_blank"><button class="tixbutton">Tickets!</button></a>';
 		}
+		let artists = '';
+		if (object.Artists.length > 1) {
+			object.Artists.forEach(function(element) {
+				artists = artists + (element.Name + ", ");
+			});
+		}
+		if (object.Artists.length == 1) {
+			artists = object.Artists[0].Name;
+		}
 			$('#eventlist').append(
-		      '<div class="eventitem">' +
-		      monthName + 
-		      '<p class="artists">' + object.title + ' at <span class="venue">' + object.venue.name + '</span></p>' +
-		      '<p class="date">' + moment(object.datetime_local).format("LLL") + '</p>' +
-		      '<p class="address">' + object.venue.address + ' ' + object.venue.extended_address + '</p>' + 
-		      '<button class="mapbutton">Map it!</button>' + tickets +
-		      '<input type="hidden" class="lat" value="' + object.venue.location.lat + '">' +
-		      '<input type="hidden" class="lng" value="' + object.venue.location.lon + '">' +
-		      '</div>'
-		      );		
+				'<div class="eventitem">' +
+				monthName +
+				'<p class="artists">' + artists + ' at <span class="venue">' + object.Venue.Name + '</span></p>' +
+				'<p class="date">' + moment(object.Date).format("LLL") + '</p>' +
+				'<p class="address">' + object.Venue.Address + ' ' + object.Venue.City + ' ' + object.Venue.StateCode + ' ' + object.Venue.ZipCode + '</p>' +
+				'<button class="mapbutton">Map it!</button>' +
+				tickets +
+				'<input type="hidden" class="lat" value="' + object.Venue.Latitude + '">' +
+				'<input type="hidden" class="lng" value="' + object.Venue.Longitude + '">' +
+				'</div>'
+		  );
 	})
 }
 
@@ -140,4 +184,24 @@ $('#eventlist').on('click', '.closebutton', function(event) {
 })
 
 
+function changeClasses() {
+	$('#nav').removeClass('nav1');
+	$('#nav').addClass('nav2');
+	$('#navtitle').removeClass('navtitle1');
+	$('#navtitle').addClass('navtitle2');
+	$('#search').removeClass('searchcontainer1');
+	$('#search').addClass('searchcontainer2');
+	$('#searchbutton').addClass('searchbutton2')
+	$('#searchbutton').removeClass('searchbutton')
+	$('#powered').removeClass('powered1');
+	$('#powered').addClass('powered2');
+	$('#js-artist').addClass('inlinesearch');
+	$('#js-artist').removeClass('maininput');
+	$('.buttoncenter').addClass('buttoncenter2');
+	$('.form1').addClass('form2');
+	return;
+}
+
 });
+
+
