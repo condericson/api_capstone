@@ -3,9 +3,9 @@ $(document).ready(function() {
 $('.loading, .pagecover').addClass('hidden');
 
 
-//SeatGeek SEARCH AND API FUNCTIONS
+//JamBase SEARCH AND API FUNCTIONS
 
-//SeatGeek Api url and key
+//JamBase Api url and key
 var jamBaseApp = {
 	jamBaseArtistUrl: 'http://api.jambase.com/artists',
 	jamBaseEventUrl: 'http://api.jambase.com/events',
@@ -36,6 +36,9 @@ function getArtistName(jamBaseApp, name) {
 	}
 	$.getJSON(artistUrl, params, function(data) {
 		console.log("artist data", data);
+		if (!data) {
+			console.log("no data");
+		}
 		if (data.Artists.length > 1) {
 			return loadDidYouMean(data);
 		}
